@@ -1,50 +1,139 @@
-# React + TypeScript + Vite
+# Todo & Kanban Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based task management application combining a Todo list and Kanban board for efficient task organization. Built with TypeScript, Redux Toolkit, and modern React practices.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Todo List
+- Create, edit, and delete tasks
+- Mark tasks as complete/incomplete
+- Drag-and-drop task reordering
+- Delete confirmation dialog
+- Real-time task status updates
 
-## Expanding the ESLint configuration
+### Kanban Board
+- Create and organize tasks across different status columns
+- Drag-and-drop tasks between status columns
+- Delete tasks with ease
+- Visual task status tracking
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- React 18.3 with TypeScript
+- Vite for build tooling
+- Redux Toolkit for state management
+- TailwindCSS for styling
+- ESLint for code quality
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Git
+
+## Installation
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd todo-app
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Create a `.env` file in the root directory and add necessary environment variables
+```env
+VITE_API_KEY=your_api_key
+```
+
+4. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## Project Structure
+
+```
+todo-app/
+├── src/
+│   ├── components/
+│   │   ├── Kanban/          # Kanban board components
+│   │   └── ToDoList/        # Todo list components
+│   ├── hooks/               # Custom React hooks
+│   ├── store/              
+│   │   └── slices/          # Redux slices
+│   ├── services/            # API services
+│   ├── types/               # TypeScript types
+│   └── pages/               # Page components
+```
+
+## State Management
+
+The application uses Redux Toolkit for state management with two main slices:
+
+### Task Slice
+- Manages todo list tasks
+- Handles task ordering, completion status, and CRUD operations
+
+### Kanban Task Slice
+- Manages Kanban board tasks
+- Handles task status changes and board organization
+
+## Available Scripts
+
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run lint`: Run ESLint
+- `npm run preview`: Preview production build
+
+## Development
+
+1. The project uses ESLint for code quality. Run linting with:
+```bash
+npm run lint
+```
+
+2. For development:
+```bash
+npm run dev
+```
+
+3. To build for production:
+```bash
+npm run build
+```
+
+## Customization
+
+### Adding New Status Columns
+To add new status columns to the Kanban board, modify the status types in `src/types/Task.ts`:
+
+```typescript
+export type KanbanTaskStatus = 'todo' | 'in-progress' | 'done' | 'your-new-status';
+```
+
+### Styling
+The project uses shadcn/ui components and TailwindCSS for styling. Customize the theme in:
+- `tailwind.config.js` for TailwindCSS configuration
+- `components/ui` for shadcn/ui component customization
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
